@@ -1,3 +1,10 @@
+resources:
+  - name: myAppRepo
+    type: GitRepo
+    configuration:
+      gitProvider: example
+      path: NeuraLegion/jfrog-example
+
 pipelines:
   - name: pipeline_hello_world
     configuration:

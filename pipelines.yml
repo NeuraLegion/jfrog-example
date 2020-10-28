@@ -1,1 +1,55 @@
-# empty
+pipelines:
+  - name: pipeline_hello_world
+    configuration:
+      environmentVariables:
+        readOnly:
+          MY_MESSAGE: '"Hello World!"'
+    steps:
+      - name: step_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: myAppRepo
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
+            - add_run_variables current_runid=$run_id
+            - echo Previous run ID is $prev_runid
+            - echo Current run ID is $current_runid
+            - echo $res_myAppRepo_resourcePath
+            - echo $res_myAppRepo_gitProvider_name
+            - echo $res_myAppRepo_commitSha
+ 
+      - name: step_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
+ 
+      - name: step_3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_1
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
+ 
+      - name: step_4
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step_2
+            - name: step_3
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
+            - add_pipeline_variables prev_runid=$run_id           
+            - echo $current_runid Completed

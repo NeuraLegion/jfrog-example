@@ -1,0 +1,6 @@
+resources:
+  - name: myAppRepo
+    type: GitRepo
+    configuration:
+      gitProvider: example
+      path: NeuraLegion/jfrog-example

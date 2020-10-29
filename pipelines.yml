@@ -11,11 +11,12 @@ pipelines:
       environmentVariables:
         readOnly:
           MY_MESSAGE: '"Hello World!"'
-      integrations:
-        - name: Nexploit
     steps:
       - name: nexploit
         type: Bash
+        configuration:
+          integrations:
+            - name: Nexploit
         execution:
           onExecute:
             - sudo apt update

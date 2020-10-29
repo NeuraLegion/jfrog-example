@@ -23,18 +23,7 @@ pipelines:
             - curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
             - sudo bash nodesource_setup.sh
             - sudo apt install nodejs
-            - nodejs -v
-            - npm -v
             - sudo npm install -g @neuralegion/nexploit-cli
-            - nexploit-cli -v
-            - echo $MY_MESSAGE
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
-            - add_run_variables current_runid=$run_id
-            - echo Previous run ID is $prev_runid
-            - echo Current run ID is $current_runid
-            - echo $res_myAppRepo_resourcePath
-            - echo $res_myAppRepo_gitProvider_name
-            - echo $res_myAppRepo_commitSha
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                               \
                   --test csrf dom_xss header_security secret_tokens                           \

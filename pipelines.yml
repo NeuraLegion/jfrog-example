@@ -43,9 +43,11 @@ pipelines:
         configuration:
           inputSteps:
             - name: install_nexploit
+          integrations:
+            - name: Nexploit
         execution:
           onExecute:
-            - echo $MY_MESSAGE
+            - int_Nexploit_NEXPLOIT_TOKEN
             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
  
       - name: step_3

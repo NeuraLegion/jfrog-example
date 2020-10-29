@@ -38,7 +38,7 @@ pipelines:
             - echo $res_myAppRepo_gitProvider_name
             - echo $res_myAppRepo_commitSha
  
-      - name: step_2
+      - name: run_scan
         type: Bash
         configuration:
           inputSteps:
@@ -47,8 +47,12 @@ pipelines:
             - name: Nexploit
         execution:
           onExecute:
-            - printenv int_Nexploit_NEXPLOIT_TOKEN
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
+            - |
+              SCAN_ID=$(nexploit-cli scan:run                                        \
+                --test csrf dom_xss header_security secret_tokens                    \
+                --name "🥤 Juice-Shop for a '${gitBranch}' branch #${current_runid}" \
+                --crawler https://juice-shop.herokuapp.com                           \
+                --token ${{ int_Nexploit_NEXPLOIT_TOKEN }})
  
       - name: step_3
         type: Bash
@@ -64,7 +68,7 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - name: step_2
+            - name: run_scan
             - name: step_3
         execution:
           onExecute:

@@ -20,8 +20,12 @@ pipelines:
         execution:
           onExecute:
             - sudo apt update
+            - cd ~
+            - curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+            - sudo bash nodesource_setup.sh
             - sudo apt install nodejs
-            - sudo apt install npm
+            - nodejs -v
+            - npm -v
             - sudo npm install -g @neuralegion/nexploit-cli
             - nexploit-cli -v
             - echo $MY_MESSAGE

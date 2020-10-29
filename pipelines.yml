@@ -40,8 +40,8 @@ pipelines:
             - echo $res_myAppRepo_gitProvider_name
             - echo $res_myAppRepo_commitSha
             - |
-                SCAN_ID=$(nexploit-cli scan:run                                        \
-                  --test csrf dom_xss header_security secret_tokens                    \
-                  --name "🥤 Juice-Shop for a '${gitBranch}' branch #${current_runid}" \
-                  --crawler https://juice-shop.herokuapp.com                           \
+                SCAN_ID=$(nexploit-cli scan:run                                               \
+                  --test csrf dom_xss header_security secret_tokens                           \
+                  --name "🥤 Juice-Shop for a #${res_myAppRepo_commitSha} #${current_runid}"  \
+                  --crawler https://juice-shop.herokuapp.com                                  \
                   --token $int_Nexploit_NEXPLOIT_TOKEN)

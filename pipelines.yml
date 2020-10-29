@@ -52,7 +52,7 @@ pipelines:
                 --test csrf dom_xss header_security secret_tokens                    \
                 --name "🥤 Juice-Shop for a '${gitBranch}' branch #${current_runid}" \
                 --crawler https://juice-shop.herokuapp.com                           \
-                --token ${{ int_Nexploit_NEXPLOIT_TOKEN }})
+                --token $int_Nexploit_NEXPLOIT_TOKEN
  
       - name: step_3
         type: Bash

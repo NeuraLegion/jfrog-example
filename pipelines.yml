@@ -45,3 +45,11 @@ pipelines:
                   --name "🥤 Juice-Shop for a #${res_myAppRepo_commitSha} #${current_runid}"  \
                   --crawler https://juice-shop.herokuapp.com                                  \
                   --token $int_Nexploit_NEXPLOIT_TOKEN)
+            - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
+            - |
+              nexploit-cli scan:polling               \
+                --interval 30s                        \
+                --timeout 20m                         \
+                --token $int_Nexploit_NEXPLOIT_TOKEN  \
+                --breakpoint high_issue $SCAN_ID
+            - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

@@ -36,7 +36,7 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - name: step_1
+            - name: install_nexploit
         execution:
           onExecute:
             - echo $MY_MESSAGE
@@ -46,7 +46,7 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - name: step_1
+            - name: install_nexploit
         execution:
           onExecute:
             - echo $MY_MESSAGE

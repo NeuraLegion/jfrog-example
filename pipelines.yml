@@ -20,7 +20,7 @@ pipelines:
         execution:
           onExecute:
             - apt-get update
-            - apt-get install nodejs npm
+            - apt-get install nodejs npm --fix-missing
             - npm install -g @neuralegion/nexploit-cli
             - nexploit-cli -v
             - echo $MY_MESSAGE

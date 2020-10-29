@@ -19,8 +19,9 @@ pipelines:
             - name: myAppRepo
         execution:
           onExecute:
-            - apt-get update
-            - apt-get install nodejs npm --fix-missing
+            - apt update
+            - apt install nodejs
+            - apt install npm
             - npm install -g @neuralegion/nexploit-cli
             - nexploit-cli -v
             - echo $MY_MESSAGE

@@ -11,12 +11,11 @@ pipelines:
       environmentVariables:
         readOnly:
           MY_MESSAGE: '"Hello World!"'
+      integrations:
+        - name: Nexploit
     steps:
-      - name: install_nexploit
+      - name: nexploit
         type: Bash
-        configuration:
-          inputResources:
-            - name: myAppRepo
         execution:
           onExecute:
             - sudo apt update
@@ -37,42 +36,9 @@ pipelines:
             - echo $res_myAppRepo_resourcePath
             - echo $res_myAppRepo_gitProvider_name
             - echo $res_myAppRepo_commitSha
- 
-      - name: run_scan
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: install_nexploit
-          integrations:
-            - name: Nexploit
-        execution:
-          onExecute:
             - |
-              SCAN_ID=$(nexploit-cli scan:run                                        \
-                --test csrf dom_xss header_security secret_tokens                    \
-                --name "🥤 Juice-Shop for a '${gitBranch}' branch #${current_runid}" \
-                --crawler https://juice-shop.herokuapp.com                           \
-                --token $int_Nexploit_NEXPLOIT_TOKEN)
- 
-      - name: step_3
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: install_nexploit
-        execution:
-          onExecute:
-            - echo $MY_MESSAGE
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
- 
-      - name: step_4
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: run_scan
-            - name: step_3
-        execution:
-          onExecute:
-            - echo $MY_MESSAGE
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
-            - add_pipeline_variables prev_runid=$run_id           
-            - echo $current_runid Completed
+                SCAN_ID=$(nexploit-cli scan:run                                        \
+                  --test csrf dom_xss header_security secret_tokens                    \
+                  --name "🥤 Juice-Shop for a '${gitBranch}' branch #${current_runid}" \
+                  --crawler https://juice-shop.herokuapp.com                           \
+                  --token $int_Nexploit_NEXPLOIT_TOKEN)

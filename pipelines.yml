@@ -47,7 +47,7 @@ pipelines:
             - name: Nexploit
         execution:
           onExecute:
-            - int_Nexploit_NEXPLOIT_TOKEN
+            - printenv int_Nexploit_NEXPLOIT_TOKEN
             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
  
       - name: step_3

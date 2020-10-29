@@ -7,10 +7,6 @@ resources:
 
 pipelines:
   - name: nexploit
-    configuration:
-      environmentVariables:
-        readOnly:
-          MY_MESSAGE: '"Hello World!"'
     steps:
       - name: nexploit
         type: Bash

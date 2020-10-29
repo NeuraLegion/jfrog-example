@@ -17,6 +17,8 @@ pipelines:
         configuration:
           integrations:
             - name: Nexploit
+          inputResources:
+            - name: myAppRepo
         execution:
           onExecute:
             - sudo apt update

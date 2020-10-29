@@ -6,19 +6,23 @@ resources:
       path: NeuraLegion/jfrog-example
 
 pipelines:
-  - name: pipeline_hello_world
+  - name: nexploit
     configuration:
       environmentVariables:
         readOnly:
           MY_MESSAGE: '"Hello World!"'
     steps:
-      - name: step_1
+      - name: install_nexploit
         type: Bash
         configuration:
           inputResources:
             - name: myAppRepo
         execution:
           onExecute:
+            - apt-get update
+            - apt-get install nodejs npm
+            - npm install -g @neuralegion/nexploit-cli
+            - nexploit-cli -v
             - echo $MY_MESSAGE
             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
             - add_run_variables current_runid=$run_id

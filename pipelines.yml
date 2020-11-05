@@ -33,9 +33,9 @@ pipelines:
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
             - |
               nexploit-cli scan:polling               \
-                --interval 30s                        \ # Make a request every 30 seconds
-                --timeout 10m                         \ # Stop polling after 10 minutes
-                --token $int_Nexploit_NEXPLOIT_TOKEN  \ # token for using Nexploit API
-                --breakpoint high_issue $SCAN_ID        # Stop polling on first high severity issue
+                --interval 30s                        \
+                --timeout 10m                         \
+                --token $int_Nexploit_NEXPLOIT_TOKEN  \
+                --breakpoint high_issue $SCAN_ID
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

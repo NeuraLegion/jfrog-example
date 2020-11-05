@@ -34,7 +34,7 @@ pipelines:
             - |
               nexploit-cli scan:polling               \
                 --interval 30s                        \
-                --timeout 11m                         \
+                --timeout 12m                         \
                 --token $int_Nexploit_NEXPLOIT_TOKEN  \
                 --breakpoint high_issue $SCAN_ID
           onComplete:

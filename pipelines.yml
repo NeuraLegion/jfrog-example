@@ -37,4 +37,5 @@ pipelines:
                 --timeout 10m                         \ # Stop polling after 10 minutes
                 --token $int_Nexploit_NEXPLOIT_TOKEN  \ # token for using Nexploit API
                 --breakpoint high_issue $SCAN_ID        # Stop polling on first high severity issue
+          onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

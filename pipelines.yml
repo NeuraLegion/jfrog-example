@@ -18,6 +18,7 @@ pipelines:
         execution:
           onExecute:
             - sudo apt update
+            - sudo chmod 1777 /tmp
             - sudo apt install node-gyp libnode-dev libnode64 nodejs npm
             - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true

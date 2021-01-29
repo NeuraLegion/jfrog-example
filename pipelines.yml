@@ -23,8 +23,8 @@ pipelines:
             - curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
             - sudo apt update
             - sudo bash nodesource_setup.sh
-            - sudo apt install node-gyp libnode-dev libnode64
-            - sudo apt install nodejs npm
+            - sudo apt install node-gyp libnode-dev libnode64 nodejs npm
+            - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                               \

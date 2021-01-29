@@ -14,7 +14,7 @@ pipelines:
           integrations:
             - name: Nexploit
           inputResources:
-            - name: myAppRepo
+            - name: jfrog-nexploit
         execution:
           onExecute:
             - sudo apt update

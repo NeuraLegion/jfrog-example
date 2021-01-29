@@ -20,16 +20,14 @@ pipelines:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - cd ~
-#            - curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
             - sudo apt update
-#            - sudo bash nodesource_setup.sh
             - sudo apt install node-gyp libnode-dev libnode64 nodejs npm
             - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                               \
                   --test csrf dom_xss header_security secret_tokens                           \
-                  --name "🥤 Juice-Shop for a #${res_myAppRepo_commitSha} #${current_runid}"  \
+                  --name "🥤 Juice-Shop for a #${res_jfrognexploit_commitSha} #${current_runid}"  \
                   --crawler https://juice-shop.herokuapp.com                                  \
                   --token $int_Nexploit_NEXPLOIT_TOKEN)
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"

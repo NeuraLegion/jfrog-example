@@ -23,7 +23,7 @@ pipelines:
             - curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
             - sudo apt update
             - sudo bash nodesource_setup.sh
-            - sudo apt install node-gyp
+            - sudo apt install node-gyp libnode-dev
             - sudo apt install nodejs npm
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |

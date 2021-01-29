@@ -1,5 +1,5 @@
 resources:
-  - name: myAppRepo
+  - name: jfrog-nexploit
     type: GitRepo
     configuration:
       gitProvider: GH

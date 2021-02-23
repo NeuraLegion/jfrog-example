@@ -20,13 +20,13 @@ pipelines:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - sudo apt install node-gyp libnode-dev libnode64 nodejs npm
+            - sudo apt install nodejs npm
             - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \
                   --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" \
-                  --crawler https://brokencrystals.neuralegion.com                             \
+                  --crawler https://brokencrystals.com                                         \
                   --token $int_Nexploit_NEXPLOIT_TOKEN)
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
             - |

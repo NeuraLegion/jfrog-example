@@ -1,12 +1,12 @@
 resources:
-  - name: jfrognexploit
+  - name: jfrog_nexploit_repeater
     type: GitRepo
     configuration:
       gitProvider: GitHub
       path: NeuraLegion/jfrog-example
 
 pipelines:
-  - name: nexploit
+  - name: nexploit_repeater
     steps:
       - name: nexploit
         type: Bash
@@ -14,26 +14,40 @@ pipelines:
           integrations:
             - name: Nexploit
           inputResources:
-            - name: jfrognexploit
+            - name: jfrog_nexploit_repeater
         execution:
           onExecute:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
+            - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            - sudo chmod +x /usr/local/bin/docker-compose
             - sudo apt install nodejs npm
             - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
+            - cd $res_jfrog_nexploit_repeater_resourcePath
+            - ls
             - |
-                SCAN_ID=$(nexploit-cli scan:run                                                \
-                  --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" \
-                  --crawler https://brokencrystals.com                                         \
-                  --token $int_Nexploit_NEXPLOIT_TOKEN)
+              printf "NEXPLOIT_TOKEN=$int_Nexploit_NEXPLOIT_TOKEN\nREPEATER=$int_Nexploit_REPEATER\n" > .env
+              cat .env
+            - |
+              echo $NEXPLOIT_TOKEN
+              echo $REPEATER
+              docker-compose --env-file=.env up -d
+              docker-compose config
+            - |
+              SCAN_ID=$(nexploit-cli scan:run                                                \
+                --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" \
+                --repeater $int_Nexploit_REPEATER                                            \
+                --crawler http://brokencrystals.local                                        \
+                --smart                                                                      \
+                --token $int_Nexploit_NEXPLOIT_TOKEN)
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
             - |
               nexploit-cli scan:polling               \
                 --interval 30s                        \
-                --timeout 12m                         \
+                --timeout 20m                         \
                 --token $int_Nexploit_NEXPLOIT_TOKEN  \
-                --breakpoint high_issue $SCAN_ID
+                --breakpoint medium_issue $SCAN_ID
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: GH
-      path: NeuraLegion/jfrog-example
+      path: rielas/jfrog-example
 
 pipelines:
   - name: nexploit

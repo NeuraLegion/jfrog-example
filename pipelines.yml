@@ -2,7 +2,7 @@ resources:
   - name: jfrognexploit
     type: GitRepo
     configuration:
-      gitProvider: GH
+      gitProvider: nexploitIntegration
       path: nerkote/jfrog-example
 
 pipelines:

@@ -20,7 +20,8 @@ pipelines:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - sudo apt install --yes nodejs npm
+            - sudo apt install nodejs @10.24.1 
+            - sudo apt install npm 
             - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |

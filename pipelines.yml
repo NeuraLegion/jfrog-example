@@ -1,6 +1,6 @@
 resources:
   - name: jfrognexploit
-    type: GH
+    type: GitRepo
     configuration:
       gitProvider: GitHub
       path: NeuraLegion/jfrog-example

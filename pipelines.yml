@@ -12,7 +12,7 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: Nexploit
+            - name: NEXPLOIT
           inputResources:
             - name: jfrognexploit
         execution:

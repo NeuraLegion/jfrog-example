@@ -1,8 +1,8 @@
 resources:
   - name: jfrognexploit
-    type: GitRepo
+    type: GH
     configuration:
-      gitProvider: GH
+      gitProvider: GitHub
       path: NeuraLegion/jfrog-example
 
 pipelines:

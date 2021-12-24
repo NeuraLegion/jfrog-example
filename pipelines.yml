@@ -21,6 +21,7 @@ pipelines:
             - sudo chmod 1777 /tmp
             - sudo apt update
             - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+            - sudo chmod +x install.sh
             - ./install.sh
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |

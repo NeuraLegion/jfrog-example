@@ -21,7 +21,7 @@ pipelines:
             - sudo chmod 1777 /tmp
             - sudo apt update
             - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-            - sudo node -v 
+            - nvm install 14.18.0
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \

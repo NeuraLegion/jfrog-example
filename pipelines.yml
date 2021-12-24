@@ -20,7 +20,8 @@ pipelines:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - sudo apt install nvm v14.18.2
+            - sudo apt install https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+            - sudo apt install nvm node
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \

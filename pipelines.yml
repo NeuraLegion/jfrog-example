@@ -16,7 +16,7 @@ pipelines:
             - name: jfrognexploit
         execution:
           onExecute:
-           execution:
+           execution:[
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
@@ -34,6 +34,6 @@ pipelines:
                 --interval 30s                        \
                 --timeout 12m                         \
                 --token $int_Nexploit_NEXPLOIT_TOKEN  \
-                --breakpoint high_issue $SCAN_ID
+                --breakpoint high_issue $SCAN_ID ]
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

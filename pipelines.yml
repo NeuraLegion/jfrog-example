@@ -1,9 +1,10 @@
 resources:
-  - name: jfrog-example
+  - name: jfrognexploit
     type: GitRepo
     configuration:
-      gitProvider: nexploitIntegration
+      gitProvider: GH
       path: nerkote/jfrog-example
+
 pipelines:
   - name: nexploit
     steps:
@@ -16,13 +17,23 @@ pipelines:
             - name: jfrognexploit
         execution:
           onExecute:
-           execution:[
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
             - sudo apt install nodejs npm
             - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
-            - SCAN_ID=$(nexploit-cli scan:run --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" --crawler https://brokencrystals.com --token $int_Nexploit_NEXPLOIT_TOKEN)]       
+            - |
+                SCAN_ID=$(nexploit-cli scan:run                                                \
+                  --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" \
+                  --crawler https://brokencrystals.com                                         \
+                  --token $int_Nexploit_NEXPLOIT_TOKEN)
+            - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
+            - |
+              nexploit-cli scan:polling               \
+                --interval 30s                        \
+                --timeout 12m                         \
+                --token $int_Nexploit_NEXPLOIT_TOKEN  \
+                --breakpoint high_issue $SCAN_ID
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

@@ -23,13 +23,6 @@ pipelines:
             - sudo apt install nodejs npm
             - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
-            - |
-                SCAN_ID=$(nexploit-cli scan:run --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" --crawler https://brokencrystals.com --token $int_Nexploit_NEXPLOIT_TOKEN)        
-            - |
-              nexploit-cli scan:polling               \
-                --interval 30s                        \
-                --timeout 12m                         \
-                --token $int_Nexploit_NEXPLOIT_TOKEN  \
-                --breakpoint high_issue $SCAN_ID ]
+            - SCAN_ID=$(nexploit-cli scan:run --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" --crawler https://brokencrystals.com --token $int_Nexploit_NEXPLOIT_TOKEN)        
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

@@ -21,7 +21,6 @@ pipelines:
             - sudo chmod 1777 /tmp
             - sudo apt update
             - sudo apt install nodejs npm
-            - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \

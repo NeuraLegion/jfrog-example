@@ -20,7 +20,7 @@ pipelines:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+            - sudo wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \

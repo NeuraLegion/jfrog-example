@@ -1,8 +1,8 @@
 resources:
-  - name: jfrognexploit
+  - name: jfrog-example
     type: GitRepo
     configuration:
-      gitProvider: GH
+      gitProvider: nexploit
       path: nerkote/jfrog-example
 pipelines:
   - name: nexploit

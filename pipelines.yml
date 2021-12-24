@@ -2,9 +2,8 @@ resources:
   - name: jfrognexploit
     type: GitRepo
     configuration:
-      gitProvider: nexploitIntegration
+      gitProvider: GH
       path: nerkote/jfrog-example
-
 pipelines:
   - name: nexploit
     steps:
@@ -17,11 +16,13 @@ pipelines:
             - name: jfrognexploit
         execution:
           onExecute:
+           execution:
+          onExecute:
             - sudo apt update
-            - sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-            - sudo chmod +x /usr/local/bin/docker-compose
-            - sudo apt-get install nodejs-dev node-gyp libssl1.0-dev
-            - sudo apt-get install nodejs npm
+            - sudo chmod 1777 /tmp
+            - sudo apt update
+            - sudo apt install nodejs npm
+            - sudo apt install --fix-broken
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \

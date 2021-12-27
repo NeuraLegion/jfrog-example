@@ -4,7 +4,7 @@ resources:
     configuration:
       gitProvider: nexploitIntegration
       path: nerkote/jfrog-example
-
+      
 pipelines:
   - name: nexploit
     steps:
@@ -16,7 +16,7 @@ pipelines:
           inputResources:
             - name: jfrognexploit
         execution:
-         onExecute:
+          onExecute:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update

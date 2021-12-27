@@ -27,14 +27,14 @@ pipelines:
                   scan:run                                                \
                   --name "💎 Broken Crystals for JFrog" \
                   --crawler https://brokencrystals.com                                         \
-                  --token $NEXPLOIT_TOKEN)
+                  --token qmfz1ab.nexa.g8dpu2y00u3jenmn3hlortbtuv3sbeuz)
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
             - |
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
               nexploit-cli scan:polling               \
                 --interval 10s                        \
                 --timeout 12m                         \
-                --token $NEXPLOIT_TOKEN  \
+                --token qmfz1ab.nexa.g8dpu2y00u3jenmn3hlortbtuv3sbeuz  \
                 --breakpoint high_issue $SCAN_ID
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

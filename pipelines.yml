@@ -21,7 +21,7 @@ pipelines:
             - sudo chmod 1777 /tmp
             - sudo apt update
             - curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-            - apt install nodejs
+            - apt install nodejs --unsafe-perm=true
             - sudo npm install @neuralegion/nexploit-cli -g
             - |
                   SCAN_ID=$(nexploit-cli scan:run                                                \

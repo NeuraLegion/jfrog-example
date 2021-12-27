@@ -16,12 +16,14 @@ pipelines:
           inputResources:
             - name: jfrognexploit
         execution:
-          onExecute:
+         onExecute:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
             - curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             - sudo apt-get install -y nodejs
+            - node -v
+            - npm -v
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
               SCAN_ID=$(nexploit-cli scan:run \
@@ -30,13 +32,13 @@ pipelines:
                 --bus amqps://amq.app.neuralegion.com:5672 \
                 --name "💎 Broken Crystals"               \
                 --crawler https://brokencrystals.com)      
-            - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
+            - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID\n"
+            - printf "Wait for issues ⏳\n"
             - |
-            - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
               nexploit-cli scan:polling               \
-                --interval 10s                        \
-                --timeout 12m                         \
-                --token qmfz1ab.nexa.g8dpu2y00u3jenmn3hlortbtuv3sbeuz  \
+                --interval 30s                        \
+                --timeout 20m                         \
+                --token $int_Nexploit_NEXPLOIT_TOKEN  \
                 --breakpoint high_issue $SCAN_ID
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

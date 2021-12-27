@@ -20,7 +20,7 @@ pipelines:
             - sudo apt-get update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - sudo  apt-get install nodejs=10.9.0
+            - sudo  apt-get install nodejs=14.9.0
             - sudo  apt-get install npm=4.0.0
             - npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - SCAN_ID=$(nexploit-cli scan:run --name "💎 Broken Crystals JFrog" --crawler https://brokencrystals.com --token $NEXPLOIT_TOKEN)

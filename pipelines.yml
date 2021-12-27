@@ -27,7 +27,7 @@ pipelines:
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
               SCAN_ID=$(nexploit-cli scan:run \
-                --token $NEXPLOIT_TOKEN      \
+                --token $int_Nexploit_NEXPLOIT_TOKEN      \
                 --api https://app.neuralegion.com         \
                 --bus amqps://amq.app.neuralegion.com:5672 \
                 --name "💎 Broken Crystals"               \
@@ -38,7 +38,7 @@ pipelines:
               nexploit-cli scan:polling               \
                 --interval 30s                        \
                 --timeout 20m                         \
-                --token $NEXPLOIT_TOKEN  \
+                --token $int_Nexploit_NEXPLOIT_TOKEN  \
                 --breakpoint high_issue $SCAN_ID
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

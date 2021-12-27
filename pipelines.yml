@@ -21,8 +21,7 @@ pipelines:
             - sudo chmod 1777 /tmp
             - sudo apt update
             - sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-            - sudo  apt-get install nodejs=14.9.0
-            - sudo  apt-get install npm=4.0.0
+            - sudo nvm install node
             - npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - SCAN_ID=$(nexploit-cli scan:run --name "💎 Broken Crystals JFrog" --crawler https://brokencrystals.com --token $NEXPLOIT_TOKEN)
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"

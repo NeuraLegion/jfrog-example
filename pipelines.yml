@@ -20,7 +20,7 @@ pipelines:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - sudo apt install node 14
+            - sudo apt install nodejs 10
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \

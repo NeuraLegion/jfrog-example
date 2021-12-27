@@ -17,12 +17,11 @@ pipelines:
             - name: jfrognexploit
         execution:
           onExecute:
-            - sudo apt update
+            - sudo apt-get update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-            - sudo apt-get install -y nodejs
-            - npm rebuild
+            - sudo nvm install v0.10.32
+            - apt-get install -y nodejs 
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - SCAN_ID=$(nexploit-cli scan:run --name "💎 Broken Crystals JFrog" --crawler https://brokencrystals.com --token $NEXPLOIT_TOKEN)
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"

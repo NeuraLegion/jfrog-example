@@ -24,7 +24,7 @@ pipelines:
             - sudo apt install nodejs
             - sudo npm install @neuralegion/nexploit-cli --unsafe-perm=true
             - |
-                sudo SCAN_ID=$(nexploit-cli scan:run                                                \
+                  scan:run                                                \
                   --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" \
                   --crawler https://brokencrystals.com                                         \
                   --token $int_Nexploit_NEXPLOIT_TOKEN)

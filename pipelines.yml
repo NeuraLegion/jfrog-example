@@ -20,8 +20,8 @@ pipelines:
             - sudo apt-get update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
-            - bash install_nvm.sh
+            - sudo curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
+            - sudo bash install_nvm.sh
             - sudo nvm install --lts
             - npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - SCAN_ID=$(nexploit-cli scan:run --name "💎 Broken Crystals JFrog" --crawler https://brokencrystals.com --token $NEXPLOIT_TOKEN)

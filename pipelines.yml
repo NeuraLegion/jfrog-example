@@ -22,9 +22,9 @@ pipelines:
             - sudo apt update
             - curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
             - sudo apt install nodejs
-            - sudo npm install @neuralegion/nexploit-cli --unsafe-perm=true
+            - sudo npm install @neuralegion/nexploit-cli -g
             - |
-                  scan:run                                                \
+                  SCAN_ID=$(nexploit-cli scan:run                                                \
                   --name "💎 Broken Crystals for JFrog" \
                   --crawler https://brokencrystals.com                                         \
                   --token qmfz1ab.nexa.g8dpu2y00u3jenmn3hlortbtuv3sbeuz)

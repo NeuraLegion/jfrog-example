@@ -21,9 +21,8 @@ pipelines:
             - sudo chmod 1777 /tmp
             - sudo apt update
             - curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-            - sudo apt install nodejs 
-            - sudo npm cache clean --force
-            - sudo npm install @neuralegion/nexploit-cli -g --unsafe-perm=true
+            - sudo apt install nodejs npm
+            - sudo npm install @neuralegion/nexploit-cli -g
             - |
                   SCAN_ID=$(nexploit-cli scan:run                                                \
                   --name "💎 Broken Crystals for JFrog" \

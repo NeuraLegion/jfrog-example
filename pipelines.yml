@@ -25,7 +25,7 @@ pipelines:
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \
-                  --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" \
+                  --name "💎 Broken Crystals JFrog"                                           \
                   --crawler https://brokencrystals.com                                         \
                   --token $int_Nexploit_NEXPLOIT_TOKEN)
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"

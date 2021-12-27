@@ -14,9 +14,9 @@ pipelines:
           runtime: 
             type: image
               auto:
-              language: node
-              versions:
-                - "10.18.0"
+                language: node
+                  versions:
+                    - "10.18.0"
           integrations:
             - name: NEXPLOIT
           inputResources:

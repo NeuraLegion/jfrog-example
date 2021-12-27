@@ -11,6 +11,12 @@ pipelines:
       - name: nexploit
         type: Bash
         configuration:
+          runtime: 
+            type: image
+              auto:
+              language: node
+              versions:
+                - "10.18.0"
           integrations:
             - name: NEXPLOIT
           inputResources:
@@ -20,7 +26,6 @@ pipelines:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - sudo install nodejs 10
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
                 SCAN_ID=$(nexploit-cli scan:run                                                \

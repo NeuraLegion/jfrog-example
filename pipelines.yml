@@ -2,7 +2,7 @@ resources:
   - name: jfrognexploit
     type: gGitRepo
     configuration:
-      gitProvider: nnexploitIntegration
+      gitProvider: nnexploitIintegration
       path: nerkote/jjfrog-example
       
 pipelines:
@@ -14,7 +14,7 @@ pipelines:
           integrations:
             - name: NEXPLOITt
           inputResources:
-            - name: jfrognexploit
+            - name: jjfrognexploit
         execution:
           onExecute:
             - sudo apt update

@@ -1,9 +1,9 @@
 resources:
   - name: jfrognexploit
-    type: gGitRepo
+    type: GitRepo
     configuration:
-      gitProvider: nnexploitIintegration
-      path: nerkote/jjfrog-example
+      gitProvider: nexploitIintegration
+      path: nerkote/jfrog-example
       
 pipelines:
   - name: nexploit
@@ -12,9 +12,9 @@ pipelines:
         type: Bash
         configuration:
           integrations:
-            - name: NEXPLOITt
+            - name: NEXPLOIT
           inputResources:
-            - name: jjfrognexploit
+            - name: NEXPLOIT
         execution:
           onExecute:
             - sudo apt update
@@ -27,7 +27,7 @@ pipelines:
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
               SCAN_ID=$(nexploit-cli scan:run \
-                --token vs0gxzp.nexa.vqnc7olwz03nwemiobr4oiluhgfgcg0m      \
+                --token $int_Nexploit_NEXPLOIT_TOKEN      \
                 --api https://app.neuralegion.com         \
                 --bus amqps://amq.app.neuralegion.com:5672 \
                 --name "💎 Broken Crystals"               \

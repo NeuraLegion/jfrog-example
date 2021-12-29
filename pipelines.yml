@@ -1,38 +1,41 @@
 resources:
-  - name: jfrognexploit
+  - name: JFrogNeuraLegion
     type: GitRepo
     configuration:
       gitProvider: GitHub
       path: NeuraLegion/jfrog-example
 
 pipelines:
-  - name: nexploit
+  - name: neuralegion
     steps:
-      - name: nexploit
+      - name: neuralegion
         type: Bash
         configuration:
           integrations:
             - name: Nexploit
           inputResources:
-            - name: jfrognexploit
+            - name: JFrogNeuraLegion
         execution:
           onExecute:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
-            - sudo apt install nodejs npm
-            - sudo apt install --fix-broken
+            - curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+            - sudo apt-get install -y nodejs
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
-                SCAN_ID=$(nexploit-cli scan:run                                                \
-                  --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}" \
-                  --crawler https://brokencrystals.com                                         \
-                  --token $int_Nexploit_NEXPLOIT_TOKEN)
-            - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID"
+              SCAN_ID=$(nexploit-cli scan:run \
+                --token $int_Nexploit_NEXPLOIT_TOKEN      \
+                --api https://app.neuralegion.com         \
+                --bus amqps://amq.app.neuralegion.com:5672 \
+                --name "💎 Broken Crystals scan without repeater"               \
+                --crawler https://brokencrystals.com)      
+            - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID\n"
+            - printf "Wait for issues ⏳\n"
             - |
               nexploit-cli scan:polling               \
                 --interval 30s                        \
-                --timeout 12m                         \
+                --timeout 20m                         \
                 --token $int_Nexploit_NEXPLOIT_TOKEN  \
                 --breakpoint high_issue $SCAN_ID
           onComplete:

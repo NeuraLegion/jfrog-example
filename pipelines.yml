@@ -1,10 +1,10 @@
 resources:
-  - name: jfrognexploit
+  - name: jfrognexploit1
     type: GitRepo
     configuration:
       gitProvider: nexploitIntegration
       path: nerkote/jfrog-example
-      
+
 pipelines:
   - name: nexploit
     steps:
@@ -14,16 +14,14 @@ pipelines:
           integrations:
             - name: Nexploit
           inputResources:
-            - name: jfrognexploit
+            - name: jfrognexploit1
         execution:
-           onExecute:
+          onExecute:
             - sudo apt update
             - sudo chmod 1777 /tmp
             - sudo apt update
             - curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
             - sudo apt-get install -y nodejs
-            - node -v
-            - npm -v
             - sudo npm install -g @neuralegion/nexploit-cli --unsafe-perm=true
             - |
               SCAN_ID=$(nexploit-cli scan:run \

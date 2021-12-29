@@ -2,8 +2,8 @@ resources:
   - name: JFrogNeuraLegion
     type: GitRepo
     configuration:
-      gitProvider: nexploitIntegration
-      path: nerkote/jfrog-example
+      gitProvider: GitHub
+      path: NeuraLegion/jfrog-example
 
 pipelines:
   - name: neuralegion
@@ -28,7 +28,7 @@ pipelines:
                 --token $int_Nexploit_NEXPLOIT_TOKEN      \
                 --api https://app.neuralegion.com         \
                 --bus amqps://amq.app.neuralegion.com:5672 \
-                --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}"               \
+                --name "💎 Broken Crystals scan without repeater"               \
                 --crawler https://brokencrystals.com)      
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID\n"
             - printf "Wait for issues ⏳\n"

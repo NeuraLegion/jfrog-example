@@ -1,5 +1,5 @@
 resources:
-  - name: jfrognexploit1
+  - name: jfrognexploit
     type: GitRepo
     configuration:
       gitProvider: nexploitIntegration
@@ -14,7 +14,7 @@ pipelines:
           integrations:
             - name: Nexploit
           inputResources:
-            - name: jfrognexploit1
+            - name: jfrognexploit
         execution:
           onExecute:
             - sudo apt update
@@ -36,7 +36,7 @@ pipelines:
               nexploit-cli scan:polling               \
                 --interval 30s                        \
                 --timeout 20m                         \
-                --token $NEXPLOIT_TOKEN  \
+                --token $int_Nexploit_NEXPLOIT_TOKEN  \
                 --breakpoint high_issue $SCAN_ID
           onComplete:
             - nexploit-cli scan:stop --token $int_Nexploit_NEXPLOIT_TOKEN $SCAN_ID

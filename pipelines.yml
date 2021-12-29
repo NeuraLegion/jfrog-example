@@ -1,20 +1,20 @@
 resources:
-  - name: jfrognexploit
+  - name: JFrogNeuraLegion
     type: GitRepo
     configuration:
       gitProvider: nexploitIntegration
       path: nerkote/jfrog-example
 
 pipelines:
-  - name: nexploit
+  - name: neuralegion
     steps:
-      - name: nexploit
+      - name: neuralegion
         type: Bash
         configuration:
           integrations:
             - name: Nexploit
           inputResources:
-            - name: jfrognexploit
+            - name: JFrogNeuraLegion
         execution:
           onExecute:
             - sudo apt update
@@ -28,7 +28,7 @@ pipelines:
                 --token $int_Nexploit_NEXPLOIT_TOKEN      \
                 --api https://app.neuralegion.com         \
                 --bus amqps://amq.app.neuralegion.com:5672 \
-                --name "Without repeater"               \
+                --name "💎 Broken Crystals for a #${res_jfrognexploit_commitSha} #${run_id}"               \
                 --crawler https://brokencrystals.com)      
             - printf "Scan was started with ID https://nexploit.app/scans/$SCAN_ID\n"
             - printf "Wait for issues ⏳\n"

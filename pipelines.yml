@@ -1,5 +1,5 @@
 resources:
-  - name: jfrognexploit
+  - name: jfrognexploit1
     type: GitRepo
     configuration:
       gitProvider: nexploitIntegration
@@ -14,7 +14,7 @@ pipelines:
           integrations:
             - name: Nexploit
           inputResources:
-            - name: Nexploit
+            - name: jfrognexploit1
         execution:
           onExecute:
             - sudo apt update
